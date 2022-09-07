@@ -1,3 +1,5 @@
+import { AppRoutingModule } from '../app-routing.module';
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SidebarComponent } from './sidebar/sidebar.component';
@@ -13,7 +15,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     SidebarComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    AppRoutingModule
   ],
   /*
     we export SidebarComponent bercause we are going to use it on another modules or components outside our shared module, for example in the main app-component
