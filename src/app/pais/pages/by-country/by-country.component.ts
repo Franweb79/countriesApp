@@ -28,7 +28,7 @@ export class ByCountryComponent implements OnInit {
   search(){
     console.log(this.term);
     this._countryService.searchByCountry(this.term).subscribe({
-      next:(response:any)=>{
+      next:(response:Country[])=>{
        
         this.byCountryResults=response;
         console.log (this.byCountryResults);
