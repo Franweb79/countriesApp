@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Country } from '../../interfaces/i-country';
 import { CountryService } from '../../services/country.service';
 
 @Component({
@@ -13,12 +14,12 @@ export class ByCountryComponent implements OnInit {
 
   public isNotFound:boolean;
 
-  public $byCountryResults:Observable<object>;
+  public byCountryResults:Country[];
 
   constructor(private _countryService:CountryService) { 
     this.term="";
     this.isNotFound=false;
-    this.$byCountryResults=new Observable();
+    this.byCountryResults=[];
   }
 
   ngOnInit(): void {
@@ -27,11 +28,13 @@ export class ByCountryComponent implements OnInit {
   search(){
     console.log(this.term);
     this._countryService.searchByCountry(this.term).subscribe({
-      next:(data)=>{
-        console.log (data);
+      next:(response:any)=>{
+       
+        this.byCountryResults=response;
+        console.log (this.byCountryResults);
         this.isNotFound=false;
       },
-      error:(error)=>{
+      error:(error:any)=>{
         console.log ("cagada"+error);
         this.isNotFound=true;
       }
