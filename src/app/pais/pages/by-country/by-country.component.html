@@ -20,7 +20,7 @@
     Nothing found with the term {{term}}
 </div>
 
-<div *ngIf="showTable" class="row">
+<div class="row" *ngIf="byCountryResults.length>0"><!--*ngIf="showTable" was the old way--> 
     <div class="col">
         <table class="table table-hover" >
             <thead>
@@ -32,12 +32,14 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let country of byCountryResults">
-                    <td>1</td>
-                    <td>{{country.flag}}</td>
+                <tr *ngFor="let country of byCountryResults; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>
+                        {{country.flag}}
+                    </td>
                     <td>{{country.name.official}}</td>
-                    <td>{{country.population}}</td>
-                    <td><a href="{{country.maps.googleMaps}}" target="_blank">Watch more</a></td>
+                    <td>{{country.population | number }}</td>
+                    <td><a [routerLink]="['/country', country.cca2]" routerLinkActive="router-link-active">Watch more</a></td>
 
                 </tr>
 

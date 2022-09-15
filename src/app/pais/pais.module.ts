@@ -6,6 +6,7 @@ import { ByCapitalsComponent } from './pages/by-capitals/by-capitals.component';
 import { ByCountryComponent } from './pages/by-country/by-country.component';
 import { ByRegionComponent } from './pages/by-region/by-region.component';
 import { SeeCountryComponent } from './pages/see-country/see-country.component';
+import { RouterModule } from '@angular/router';
 
 /*
   this module will be imported on the main module of the app,
@@ -23,6 +24,7 @@ import { SeeCountryComponent } from './pages/see-country/see-country.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
     FormsModule
   ],
 

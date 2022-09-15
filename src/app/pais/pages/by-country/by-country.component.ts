@@ -14,14 +14,14 @@ export class ByCountryComponent implements OnInit {
 
   public isNotFound:boolean;
 
-  public showTable:boolean;
+  //public showTable:boolean; we will do better setting the array results to 0
 
   public byCountryResults:Country[];
 
   constructor(private _countryService:CountryService) { 
     this.term="";
     this.isNotFound=false;
-    this.showTable=false;
+   // this.showTable=false;
     this.byCountryResults=[];
   }
 
@@ -36,12 +36,13 @@ export class ByCountryComponent implements OnInit {
         this.byCountryResults=response;
         console.log (this.byCountryResults);
         this.isNotFound=false;
-        this.showTable=true;
+       // this.showTable=true;
       },
       error:(error:any)=>{
         console.log ("cagada"+error);
         this.isNotFound=true;
-        this.showTable=false;
+       // this.showTable=false;
+       this.byCountryResults=[];
       }
     });
 
