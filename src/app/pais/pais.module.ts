@@ -7,6 +7,7 @@ import { ByCountryComponent } from './pages/by-country/by-country.component';
 import { ByRegionComponent } from './pages/by-region/by-region.component';
 import { SeeCountryComponent } from './pages/see-country/see-country.component';
 import { RouterModule } from '@angular/router';
+import { CountriesTableComponent } from './components/countries-table/countries-table.component';
 
 /*
   this module will be imported on the main module of the app,
@@ -20,7 +21,8 @@ import { RouterModule } from '@angular/router';
     ByCapitalsComponent,
     ByCountryComponent,
     ByRegionComponent,
-    SeeCountryComponent
+    SeeCountryComponent,
+    CountriesTableComponent
   ],
   imports: [
     CommonModule,

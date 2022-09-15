@@ -22,28 +22,6 @@
 
 <div class="row" *ngIf="byCountryResults.length>0"><!--*ngIf="showTable" was the old way--> 
     <div class="col">
-        <table class="table table-hover" >
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Flag</th>
-                    <th>Name</th>
-                    <th>Population</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let country of byCountryResults; let i=index">
-                    <td>{{i+1}}</td>
-                    <td>
-                        {{country.flag}}
-                    </td>
-                    <td>{{country.name.official}}</td>
-                    <td>{{country.population | number }}</td>
-                    <td><a [routerLink]="['/country', country.cca2]" routerLinkActive="router-link-active">Watch more</a></td>
-
-                </tr>
-
-            </tbody>
-        </table>
+        <app-countries-table [dataFromParent]="byCountryResults"></app-countries-table>
     </div>
 </div>
