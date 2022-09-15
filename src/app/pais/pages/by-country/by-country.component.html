@@ -17,10 +17,10 @@
 <hr>
 
 <div class="alert alert-danger" *ngIf="isNotFound">
-    Nothing found with that term
+    Nothing found with the term {{term}}
 </div>
 
-<div class="row">
+<div *ngIf="showTable" class="row">
     <div class="col">
         <table class="table table-hover" >
             <thead>
