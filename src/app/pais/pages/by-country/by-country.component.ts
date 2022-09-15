@@ -10,42 +10,41 @@ import { CountryService } from '../../services/country.service';
 })
 export class ByCountryComponent implements OnInit {
 
+
   public term:string;
-
   public isNotFound:boolean;
-
-  //public showTable:boolean; we will do better setting the array results to 0
-
   public byCountryResults:Country[];
 
-  constructor(private _countryService:CountryService) { 
+
+
+
+  constructor() { 
+   
     this.term="";
     this.isNotFound=false;
-   // this.showTable=false;
+    // this.showTable=false;
     this.byCountryResults=[];
+
+
   }
 
   ngOnInit(): void {
   }
 
-  search(){
-    console.log(this.term);
-    this._countryService.searchByCountry(this.term).subscribe({
-      next:(response:Country[])=>{
-       
-        this.byCountryResults=response;
-        console.log (this.byCountryResults);
-        this.isNotFound=false;
-       // this.showTable=true;
-      },
-      error:(error:any)=>{
-        console.log ("cagada"+error);
-        this.isNotFound=true;
-       // this.showTable=false;
-       this.byCountryResults=[];
-      }
-    });
-
+  getTermEmitter(term:string){
+    this.term=term;
   }
+
+  getIsNotFoundEmitter(isNotFound:boolean){
+    this.isNotFound=isNotFound;
+    console.log (this.isNotFound);
+  }
+
+  getByCountryResults(byCountryResults:Country[]){
+
+    this.byCountryResults=byCountryResults;
+  }
+
+ 
 
 }
