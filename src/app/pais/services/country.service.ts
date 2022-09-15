@@ -9,10 +9,19 @@ import { Country } from '../interfaces/i-country';
 })
 export class CountryService {
 
-  public byCountryUrl=`${environment.apiUrl}/name`
+  public byCountryUrl=`${environment.apiUrl}/name`;
+
+  public term:string="";
+
+  public isNotFound:boolean=false;
+    // this.showTable=false;
+  public byCountryResults:Country[]=[];
+
   constructor(private _http:HttpClient) { }
 
   searchByCountry(country:string):Observable<Country[]>{
     return this._http.get<Country[]>(`${this.byCountryUrl}/${country}`)
   }
+
+  
 }

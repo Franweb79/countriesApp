@@ -9,7 +9,7 @@ import { CountryService } from '../../services/country.service';
 })
 export class InputComponentComponent implements OnInit {
 
-  public term:string;
+  /*public term:string;
 
   @Output() termEmitter= new EventEmitter<string>;
 
@@ -23,12 +23,13 @@ export class InputComponentComponent implements OnInit {
   public byCountryResults:Country[];
   @Output() byCountryResultsEmitter=new EventEmitter<Country[]>;
 
+  */
   constructor(private _countryService:CountryService) {
-    this.term="";
+    _countryService.term="";
 
-    this.isNotFound=false;
+   // _countryService.isNotFound=false;
     // this.showTable=false;
-    this.byCountryResults=[];
+  //  _countryService.byCountryResults=[];
 
    }
 
@@ -36,34 +37,44 @@ export class InputComponentComponent implements OnInit {
   }
 
   search(){
-    console.log(this.term);
-    this._countryService.searchByCountry(this.term).subscribe({
+    console.log(this._countryService.term);
+    this._countryService.searchByCountry(this._countryService.term).subscribe({
       next:(response:Country[])=>{
        
-        this.byCountryResults=response;
-        console.log (this.byCountryResults);
-        this.isNotFound=false;
+        this._countryService.byCountryResults=response;
+        console.log (this._countryService.byCountryResults);
+        this._countryService.isNotFound=false;
 
-        this.termEmitter.emit(this.term);
+       /* this.termEmitter.emit(this.term);
         this.isNotFoundEmitter.emit(this.isNotFound);
-        this.byCountryResultsEmitter.emit(this.byCountryResults);
+        this.byCountryResultsEmitter.emit(this.byCountryResults);*/
        // this.showTable=true;
       },
       error:(error:any)=>{
         console.log ("cagada"+error);
-        this.isNotFound=true;
+        this._countryService.isNotFound=true;
        // this.showTable=false;
-        this.byCountryResults=[];
+        this._countryService.byCountryResults=[];
 
-        this.termEmitter.emit(this.term);
+        /*this.termEmitter.emit(this.term);
         this.isNotFoundEmitter.emit(this.isNotFound);
-        this.byCountryResultsEmitter.emit(this.byCountryResults);
+        this.byCountryResultsEmitter.emit(this.byCountryResults);*/
       }
     });
 
     
 
 
+  }
+
+  /*to be able to inject private service and use property on the template*/
+
+  get term():string{
+    return this._countryService.term;
+  }
+
+  set term(_term:string){
+    this._countryService.term=_term;
   }
 
 }
