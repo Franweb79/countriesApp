@@ -11,11 +11,9 @@ export class CountryService {
 
   public byCountryUrl=`${environment.apiUrl}/name`;
 
-  public term:string="";
+  
 
-  public isNotFound:boolean=false;
-    // this.showTable=false;
-  public byCountryResults:Country[]=[];
+  
 
   constructor(private _http:HttpClient) { }
 

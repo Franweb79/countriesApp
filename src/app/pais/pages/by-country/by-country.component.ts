@@ -11,19 +11,46 @@ import { CountryService } from '../../services/country.service';
 export class ByCountryComponent implements OnInit {
 
 
- /* public term:string;
+  public term:string;
   public isNotFound:boolean;
   public byCountryResults:Country[];
 
-*/
+
 
 
   constructor( private _countryService:CountryService) { 
    
-  /*  this.term="";
+   this.term="";
     this.isNotFound=false;
-    // this.showTable=false;
-    this.byCountryResults=[];*/
+    this.byCountryResults=[];
+
+
+  }
+
+  search(term:string){
+    this._countryService.searchByCountry(term).subscribe({
+      next:(response:Country[])=>{
+       
+        this.term=term;
+        this.byCountryResults=response;
+        console.log (this.byCountryResults);
+        this.isNotFound=false;
+
+      
+      },
+      error:(error:any)=>{
+
+        this.term=term;
+
+        console.log (error);
+        this.isNotFound=true;
+        this.byCountryResults=[];
+
+        
+      }
+    });
+
+    
 
 
   }
@@ -32,49 +59,13 @@ export class ByCountryComponent implements OnInit {
   }
 
   getTermEmitter(term:string){
-    //this.term=term;
-  }
-
-  getIsNotFoundEmitter(isNotFound:boolean){
-    /*this.isNotFound=isNotFound;
-    console.log (this.isNotFound);*/
-  }
-
-  getByCountryResults(byCountryResults:Country[]){
-
-   // this.byCountryResults=byCountryResults;
-  }
-
-  /*to be able to inject private service and use property on the template*/
-
-  get term():string{
-    return this._countryService.term;
-  }
-
-  set term(_term:string){
-    this._countryService.term=_term;
+    this.term=term;
   }
 
 
-  get byCountryResults():Country[]{
-    return this._countryService.byCountryResults;
-  }
-
-  set byCountryResults(_byCountryResults:Country[]){
-    this._countryService.byCountryResults=_byCountryResults;
-  }
-
-  
-  get isNotFound():boolean{
-    return this._countryService.isNotFound;
-  }
-
-  set isNotFound(_isNotFound:boolean){
-    this._countryService.isNotFound=_isNotFound;
-  }
-
-  
 
  
 
 }
+
+

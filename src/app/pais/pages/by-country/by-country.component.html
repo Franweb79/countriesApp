@@ -3,7 +3,7 @@
 
 <div class="row">
     <div class="col">
-        <app-input-component ></app-input-component>
+        <app-input-component (termEmitter)="search($event)"></app-input-component>
     </div>
    
 </div>
@@ -16,6 +16,6 @@
 
 <div class="row" *ngIf="byCountryResults.length>0"><!--*ngIf="showTable" was the old way--> 
     <div class="col">
-        <app-countries-table ></app-countries-table>
+        <app-countries-table [dataFromParent]="byCountryResults" ></app-countries-table>
     </div>
 </div>

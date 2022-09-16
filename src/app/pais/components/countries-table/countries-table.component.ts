@@ -9,10 +9,10 @@ import { CountryService } from '../../services/country.service';
 })
 export class CountriesTableComponent implements OnInit {
 
-  //@Input() dataFromParent:Country[];
+  @Input() dataFromParent:Country[];
   
   constructor(public _countryService:CountryService) { 
-   // this.dataFromParent=[];
+    this.dataFromParent=[];
   }
 
   ngOnInit(): void {
