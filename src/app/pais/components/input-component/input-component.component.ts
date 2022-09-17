@@ -35,7 +35,7 @@ export class InputComponentComponent implements OnInit {
   debounceValueEmit(event:any){
 
     this.onDebounce.emit(event.target.value)
-    console.log (event.target.value);
+   // console.log (event.target.value);
   }
 
   
