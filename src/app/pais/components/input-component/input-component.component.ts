@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Subject } from 'rxjs';
+import { debounceTime, Subject } from 'rxjs';
 import { Country } from '../../interfaces/i-country';
 import { CountryService } from '../../services/country.service';
 
@@ -19,22 +19,35 @@ export class InputComponentComponent implements OnInit {
   @Output() onDebounce=new EventEmitter<string>;
 
 
- 
+  public $subject = new Subject<string>();
+
   constructor(private _countryService:CountryService) {
     this.term="";
 
    }
 
   ngOnInit(): void {
+
+    this.$subject
+    .pipe(debounceTime(300))
+    .subscribe(value=>{
+      console.log ('subject', value);
+      this.onDebounce.emit(value);
+      //this.isNotFound=false;
+    })
   }
 
   searchEmit(){
     this.termEmitter.emit(this.term);
   }
 
-  debounceValueEmit(event:any){
+  //despite any, type can be keyboardEvent
+  pressedKeyEvent(){
 
-    this.onDebounce.emit(event.target.value)
+
+    this.$subject.next(this.term);
+    //const value=event.target.value;
+    //this.onDebounce.emit(event.target.value)
    // console.log (event.target.value);
   }
 

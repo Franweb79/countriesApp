@@ -16,7 +16,6 @@ export class ByCountryComponent implements OnInit {
   public byCountryResults:Country[];
 
 
-  public $subject = new Subject<string>();
 
 
   constructor( private _countryService:CountryService) { 
@@ -58,21 +57,15 @@ export class ByCountryComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.$subject
-    .pipe(debounceTime(300))
-    .subscribe(value=>{
-      console.log ('subject', value);
-      this.isNotFound=false;
-    })
+    
   }
 
   getTermEmitter(term:string){
     this.term=term;
   }
 
-  executeSubjectSubscribe(){
-    this.$subject.next("sent");
-    
+  suggestions(term:string){
+    this.isNotFound=false;
   }
 
 

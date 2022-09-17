@@ -3,6 +3,6 @@
     name="termino"
     class="form-control"
     [(ngModel)]="term"
-    (input)="debounceValueEmit($event)"
+    (input)="pressedKeyEvent()"
     placeholder="search country..."/>
 </form>
