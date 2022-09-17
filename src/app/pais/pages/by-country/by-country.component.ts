@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ConnectableObservable, Observable, Subject } from 'rxjs';
 import { Country } from '../../interfaces/i-country';
 import { CountryService } from '../../services/country.service';
 
@@ -16,6 +16,7 @@ export class ByCountryComponent implements OnInit {
   public byCountryResults:Country[];
 
 
+  $subject = new Subject<any>();
 
 
   constructor( private _countryService:CountryService) { 
@@ -56,10 +57,19 @@ export class ByCountryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.$subject.subscribe(value=>{
+      console.log ('subject', value);
+      this.isNotFound=false;
+    })
   }
 
   getTermEmitter(term:string){
     this.term=term;
+  }
+
+  executeSubjectSubscribe(){
+    this.$subject.next("sent");
   }
 
 
