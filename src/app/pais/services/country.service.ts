@@ -10,6 +10,7 @@ import { Country } from '../interfaces/i-country';
 export class CountryService {
 
   public byCountryUrl=`${environment.apiUrl}/name`;
+  public byCapitalUrl=`${environment.apiUrl}/capital`;
 
   
 
@@ -21,5 +22,8 @@ export class CountryService {
     return this._http.get<Country[]>(`${this.byCountryUrl}/${country}`)
   }
 
+  searchByCapital(capital:string):Observable<Country[]>{
+    return this._http.get<Country[]>(`${this.byCapitalUrl}/${capital}`)
+  }
   
 }
