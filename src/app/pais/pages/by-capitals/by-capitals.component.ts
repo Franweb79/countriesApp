@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Country } from '../../interfaces/i-country';
 import { CountryService } from '../../services/country.service';
 
@@ -12,6 +12,9 @@ export class ByCapitalsComponent implements OnInit {
   public term:string;
   public isNotFound:boolean;
   public byCapitalResults:Country[];
+
+  //will be sent to input child component
+  public placeholderText:string="Search by capital";
 
   constructor(private _countryService:CountryService) { 
 

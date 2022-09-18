@@ -15,7 +15,8 @@ export class ByCountryComponent implements OnInit {
   public isNotFound:boolean;
   public byCountryResults:Country[];
 
-
+  //will be sent to input child component
+  public placeholderText:string="Search by country";
 
 
   constructor( private _countryService:CountryService) { 

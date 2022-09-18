@@ -2,7 +2,10 @@
 <hr>
 <div class="row">
     <div class="col">
-        <app-input-component (onDebounce)="suggestions($event)" (termEmitter)="search($event)"></app-input-component>
+        <app-input-component 
+        [placeholder]="placeholderText"
+        (onDebounce)="suggestions($event)" 
+        (termEmitter)="search($event)"></app-input-component>
     </div>
    
 </div>

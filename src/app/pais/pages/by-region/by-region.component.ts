@@ -13,6 +13,9 @@ export class ByRegionComponent implements OnInit {
   public isNotFound:boolean;
   public byRegionResults:Country[];
 
+  //will be sent to input child component
+  public placeholderText:string="Search by region (Africa, Americas, Asia, Europe, Oceania)";
+
   constructor(private _countryService:CountryService) {
 
     this.term="";

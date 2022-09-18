@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { debounceTime, Subject } from 'rxjs';
 import { Country } from '../../interfaces/i-country';
 import { CountryService } from '../../services/country.service';
@@ -14,6 +14,8 @@ export class InputComponentComponent implements OnInit {
   //to catch input value each time we input (write) a character,
   //we will use debounceValueEmit with (input) event
   public term:string;
+
+  @Input() placeholder:string="";
 
   @Output() termEmitter= new EventEmitter<string>;
   @Output() onDebounce=new EventEmitter<string>;
