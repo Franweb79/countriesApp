@@ -11,6 +11,8 @@ export class CountryService {
 
   public byCountryUrl=`${environment.apiUrl}/name`;
   public byCapitalUrl=`${environment.apiUrl}/capital`;
+  public byRegionUrl=`${environment.apiUrl}/region`;
+
 
   
 
@@ -24,6 +26,10 @@ export class CountryService {
 
   searchByCapital(capital:string):Observable<Country[]>{
     return this._http.get<Country[]>(`${this.byCapitalUrl}/${capital}`)
+  }
+
+  searchByRegion(region:string):Observable<Country[]>{
+    return this._http.get<Country[]>(`${this.byRegionUrl}/${region}`)
   }
   
 }

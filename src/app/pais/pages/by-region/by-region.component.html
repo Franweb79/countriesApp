@@ -1,3 +1,22 @@
 <h2>By Region</h2>
 <hr>
+<div class="row">
+    <div class="col">
+        <app-input-component 
+        (onDebounce)="suggestions($event)" 
+        (termEmitter)="search($event)"></app-input-component>
+    </div>
+   
+</div>
 
+<hr>
+
+<div class="alert alert-danger" *ngIf="isNotFound">
+    Nothing found with the term {{term}}
+</div>
+
+<div class="row" *ngIf="byRegionResults.length>0"><!--*ngIf="showTable" was the old way--> 
+    <div class="col">
+        <app-countries-table [dataFromParent]="byRegionResults" ></app-countries-table>
+    </div>
+</div>

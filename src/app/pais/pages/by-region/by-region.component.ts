@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Country } from '../../interfaces/i-country';
+import { CountryService } from '../../services/country.service';
 
 @Component({
   selector: 'app-by-region',
@@ -7,9 +9,56 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ByRegionComponent implements OnInit {
 
-  constructor() { }
+  public term:string;
+  public isNotFound:boolean;
+  public byRegionResults:Country[];
+
+  constructor(private _countryService:CountryService) {
+
+    this.term="";
+    this.isNotFound=false;
+    this.byRegionResults=[];
+   }
+
+   search(term:string){
+    this._countryService.searchByRegion(term).subscribe({
+      next:(response:Country[])=>{
+       
+        this.term=term;
+        this.byRegionResults=response;
+        console.log (this.byRegionResults);
+        this.isNotFound=false;
+
+      
+      },
+      error:(error:any)=>{
+
+        this.term=term;
+
+        console.log (error);
+        this.isNotFound=true;
+        this.byRegionResults=[];
+
+        
+      }
+    });
+
+    
+
+
+  }
 
   ngOnInit(): void {
+
+    
+  }
+
+  getTermEmitter(term:string){
+    this.term=term;
+  }
+
+  suggestions(term:string){
+    this.isNotFound=false;
   }
 
 }
