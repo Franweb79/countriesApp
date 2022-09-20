@@ -11,7 +11,7 @@
         <tr *ngFor="let country of dataFromParent; let i=index">
             <td>{{i+1}}</td>
             <td>
-                {{country.flag}}
+                <img [src]="country.flags.png" class ="small-flag"/>
             </td>
             <td>{{country.capital}} , {{country.name.official}}</td>
             <td>{{country.population | number }}</td>

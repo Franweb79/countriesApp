@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs';
+import { switchMap, tap } from 'rxjs';
 import { CountryService } from '../../services/country.service';
-import { Idd } from '../../interfaces/i-country';
+import { Country, Idd } from '../../interfaces/i-country';
 
 @Component({
   selector: 'app-see-country',
@@ -10,6 +10,8 @@ import { Idd } from '../../interfaces/i-country';
   styleUrls: ['./see-country.component.css']
 })
 export class SeeCountryComponent implements OnInit {
+
+  public countries: Country[]=[];
 
   constructor(private _activatedRoute:ActivatedRoute,
               private _countryService:CountryService) { }
@@ -25,10 +27,24 @@ export class SeeCountryComponent implements OnInit {
     .pipe(
       switchMap(({id})=>{
         return this._countryService.getCountryByCode(id);
-     })
+     }),
+     tap(
+      console.log
+     )
     )
-    .subscribe(resp=>{
-      console.log(resp);
+    .subscribe({
+      next: (resp=>{
+        this.countries=resp;
+       // console.log(this.country[0]);
+      }),
+      error:(error=>{
+
+        this.countries=[];
+        console.log ('error',this.countries);
+      })
+    
+      //TODO delete console logs everywhere and non used imports
+
     });
 
 
