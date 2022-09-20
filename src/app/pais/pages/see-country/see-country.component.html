@@ -25,8 +25,41 @@
                         <strong>Population</strong>
                         {{country.population | number}}
                     </li>
+                    <li class="list-group-item">
+                        <strong style="padding-right:6px">Coat Of Arms</strong>
+                        <img [src]="country.coatOfArms['png']" class="small-flag"/>
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Alpha3 Code</strong>
+                        {{country.cca3}}
+                    </li>
                 </ul>
             </div>
         </div>
+
+        <div class="row">
+            <div class="col">
+                <h3>Translations</h3>
+                <span class="badge bg-primary mr-1">{{country.translations['deu'].official}}</span>
+                <span class="badge bg-primary mr-1">{{country.translations['spa'].official}}</span>
+                <span class="badge bg-primary mr-1">{{country.translations['ara'].official}}</span>
+                <span class="badge bg-primary mr-1">{{country.translations['bre'].official}}</span>
+                <span class="badge bg-primary mr-1">{{country.translations['ces'].official}}</span>
+                <span class="badge bg-primary mr-1">{{country.translations['fin'].official}}</span>
+                <span class="badge bg-primary mr-1">{{country.translations['jpn'].official}}</span>
+                <span class="badge bg-primary mr-1">{{country.translations['rus'].official}}</span>
+
+            </div>
+        </div>
+
+        <pre class="mt-5">
+            <h3>JSON info</h3>
+            {{country | json}}
+        </pre>
     </span>
+
+   
+
 </ng-template>
+
+​​

@@ -52,6 +52,7 @@ export interface Car {
 }
 
 export interface CoatOfArms {
+[x: string]: any;
 }
 
 export interface Currencies {
