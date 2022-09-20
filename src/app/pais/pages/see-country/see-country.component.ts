@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { switchMap } from 'rxjs';
 import { CountryService } from '../../services/country.service';
+import { Idd } from '../../interfaces/i-country';
 
 @Component({
   selector: 'app-see-country',
@@ -18,6 +20,19 @@ export class SeeCountryComponent implements OnInit {
     but we will do with detructuraion
     it seems we must use () to surround the {id}, which is the way to detructurate an object
     */
+
+    this._activatedRoute.params
+    .pipe(
+      switchMap(({id})=>{
+        return this._countryService.getCountryByCode(id);
+     })
+    )
+    .subscribe(resp=>{
+      console.log(resp);
+    });
+
+
+    /*
     this._activatedRoute.params.subscribe(({id})=>{
       console.log (id);
       this._countryService.getCountryByCode(id).subscribe(value=>{
@@ -25,6 +40,8 @@ export class SeeCountryComponent implements OnInit {
       });
 
     })
+
+    */
   }
 
 }
