@@ -1,20 +1,18 @@
-<h2>By Region</h2>
-<hr>
+<h2>Seach by Region {{activeRegion | titlecase}}</h2>
+<hr><!--title case is a pipe to show first character Uppercase-->
+
 <div class="row">
     <div class="col">
-        <app-input-component 
-        [placeholder]="placeholderText"
-        (onDebounce)="suggestions($event)" 
-        (termEmitter)="search($event)"></app-input-component>
+        <button *ngFor="let region of regions"
+                class="btn btn-outline-primary"
+                (click)="activateRegion(region)"
+                >
+            {{region}}
+        </button>
     </div>
-   
 </div>
 
 <hr>
-
-<div class="alert alert-danger" *ngIf="isNotFound">
-    Nothing found with the term {{term}}
-</div>
 
 <div class="row" *ngIf="byRegionResults.length>0"><!--*ngIf="showTable" was the old way--> 
     <div class="col">

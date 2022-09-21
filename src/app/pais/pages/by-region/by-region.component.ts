@@ -9,6 +9,11 @@ import { CountryService } from '../../services/country.service';
 })
 export class ByRegionComponent implements OnInit {
 
+  public regions:string[]=['africa', 'americas', 'asia', 'europe', 'oceania'];
+  public activeRegion:string='';
+
+  public isActive:boolean=false;
+  
   public term:string;
   public isNotFound:boolean;
   public byRegionResults:Country[];
@@ -23,11 +28,15 @@ export class ByRegionComponent implements OnInit {
     this.byRegionResults=[];
    }
 
-   search(term:string){
-    this._countryService.searchByRegion(term).subscribe({
+   activateRegion (region:string){
+    this.activeRegion=region;
+    this.isActive=true;
+
+
+    this._countryService.searchByRegion(region).subscribe({
       next:(response:Country[])=>{
        
-        this.term=term;
+       // this.term=term;
         this.byRegionResults=response;
         console.log (this.byRegionResults);
         this.isNotFound=false;
@@ -36,7 +45,7 @@ export class ByRegionComponent implements OnInit {
       },
       error:(error:any)=>{
 
-        this.term=term;
+        //this.term=term;
 
         console.log (error);
         this.isNotFound=true;
@@ -45,6 +54,10 @@ export class ByRegionComponent implements OnInit {
         
       }
     });
+  
+   }
+   search(term:string){
+    
 
     
 
