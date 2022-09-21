@@ -12,43 +12,43 @@ export class ByRegionComponent implements OnInit {
   public regions:string[]=['africa', 'americas', 'asia', 'europe', 'oceania'];
   public activeRegion:string='';
 
-  public isActive:boolean=false;
   
-  public term:string;
-  public isNotFound:boolean;
+  
   public byRegionResults:Country[];
 
-  //will be sent to input child component
-  public placeholderText:string="Search by region (Africa, Americas, Asia, Europe, Oceania)";
+  
 
   constructor(private _countryService:CountryService) {
 
-    this.term="";
-    this.isNotFound=false;
     this.byRegionResults=[];
    }
 
    activateRegion (region:string){
+
+    /*  
+      forollowing return is to avoid we load data again if we push
+      the same button, e.g. oceania 2 times, why load same data 2 times?
+
+    */
+    if(this.activeRegion===region){return};
+    /*we empty the results if it was prior data on the array from another request,
+    to make response faster*/
+    this.byRegionResults=[];
     this.activeRegion=region;
-    this.isActive=true;
 
 
     this._countryService.searchByRegion(region).subscribe({
       next:(response:Country[])=>{
        
-       // this.term=term;
         this.byRegionResults=response;
         console.log (this.byRegionResults);
-        this.isNotFound=false;
 
       
       },
       error:(error:any)=>{
 
-        //this.term=term;
 
         console.log (error);
-        this.isNotFound=true;
         this.byRegionResults=[];
 
         
@@ -69,12 +69,5 @@ export class ByRegionComponent implements OnInit {
     
   }
 
-  getTermEmitter(term:string){
-    this.term=term;
-  }
-
-  suggestions(term:string){
-    this.isNotFound=false;
-  }
 
 }
