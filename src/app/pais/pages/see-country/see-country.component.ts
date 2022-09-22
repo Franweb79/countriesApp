@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, tap } from 'rxjs';
 import { CountryService } from '../../services/country.service';
 import { Country, Idd } from '../../interfaces/i-country';
@@ -14,7 +14,8 @@ export class SeeCountryComponent implements OnInit {
   public countries: Country[]=[];
 
   constructor(private _activatedRoute:ActivatedRoute,
-              private _countryService:CountryService) { }
+              private _countryService:CountryService,
+              private _router:Router) { }
 
   ngOnInit(): void {
 
@@ -41,6 +42,7 @@ export class SeeCountryComponent implements OnInit {
 
         this.countries=[];
         console.log ('error',this.countries);
+        this._router.navigate(['']);
       })
     
       //TODO delete console logs everywhere and non used imports
