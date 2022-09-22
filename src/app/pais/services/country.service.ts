@@ -22,7 +22,7 @@ export class CountryService {
   constructor(private _http:HttpClient) { }
 
   searchByCountry(country:string):Observable<Country[]>{
-    return this._http.get<Country[]>(`${this.byCountryUrl}/${country}`)
+    return this._http.get<Country[]>(`${this.byCountryUrl}/${country}?fields=name,population,flags,capital,cca2`)
   }
 
   searchByCapital(capital:string):Observable<Country[]>{

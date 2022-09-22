@@ -26,7 +26,7 @@ export class ByRegionComponent implements OnInit {
    activateRegion (region:string){
 
     /*  
-      forollowing return is to avoid we load data again if we push
+      following return is to avoid we load data again if we push
       the same button, e.g. oceania 2 times, why load same data 2 times?
 
     */
