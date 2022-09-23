@@ -40,7 +40,8 @@ export class CountriesTableComponent implements OnInit {
 
   public showTable:boolean;
   
-  constructor(public _countryService:CountryService,     private changeRef: ChangeDetectorRef
+  constructor(private _countryService:CountryService,
+              private changeRef: ChangeDetectorRef
     ) { 
     this.dataFromParent=[];
     this.showTable=false;

@@ -1,65 +1,70 @@
-<div *ngIf="countries.length==0; else divCountry" class="alert alert-info">
+<div *ngIf="countries.length==0;" class="alert alert-info">
     Please wait...
 </div>
 
-<ng-template #divCountry>
+<!--CHECK READ ME NOTE 1-->
+<div [@fade]="showComponentAnimation ? 'show' : 'hide'">
 
-    <span *ngFor="let country of countries">
-        <div class="row">
-            <div class="col-12" >
-                
-                    <h1>Country: <small>{{country.name.common}}</small></h1>
-        
-                
+    <div *ngIf="countries.length>0" >
+
+        <span *ngFor="let country of countries" >
+            <div class="row" >
+                <div class="col-12" >
+                    
+                        <h1>Country: <small>{{country.name.common}}</small></h1>
+            
+                    
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col col-4">
-                <h3>Flag</h3>
-                <img [src]="country.flags.png" class="img-thumbnail">
+            <div class="row">
+                <div class="col col-4">
+                    <h3>Flag</h3>
+                    <img [src]="country.flags.png" class="img-thumbnail">
+                </div>
+                <div class="col">
+                    <h3>Information</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <strong>Population</strong>
+                            {{country.population | number}}
+                        </li>
+                        <li class="list-group-item">
+                            <strong style="padding-right:6px">Coat Of Arms</strong>
+                            <img [src]="country.coatOfArms['png']" class="small-flag"/>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Alpha3 Code</strong>
+                            {{country.cca3}}
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <div class="col">
-                <h3>Information</h3>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <strong>Population</strong>
-                        {{country.population | number}}
-                    </li>
-                    <li class="list-group-item">
-                        <strong style="padding-right:6px">Coat Of Arms</strong>
-                        <img [src]="country.coatOfArms['png']" class="small-flag"/>
-                    </li>
-                    <li class="list-group-item">
-                        <strong>Alpha3 Code</strong>
-                        {{country.cca3}}
-                    </li>
-                </ul>
+    
+            <div class="row">
+                <div class="col">
+                    <h3>Translations</h3>
+                    <span class="badge bg-primary mr-1">{{country.translations['deu'].official}}</span>
+                    <span class="badge bg-primary mr-1">{{country.translations['spa'].official}}</span>
+                    <span class="badge bg-primary mr-1">{{country.translations['ara'].official}}</span>
+                    <span class="badge bg-primary mr-1">{{country.translations['bre'].official}}</span>
+                    <span class="badge bg-primary mr-1">{{country.translations['ces'].official}}</span>
+                    <span class="badge bg-primary mr-1">{{country.translations['fin'].official}}</span>
+                    <span class="badge bg-primary mr-1">{{country.translations['jpn'].official}}</span>
+                    <span class="badge bg-primary mr-1">{{country.translations['rus'].official}}</span>
+    
+                </div>
             </div>
-        </div>
+    
+            <pre class="mt-5">
+                <h3>JSON info</h3>
+                {{country | json}}
+            </pre>
+        </span>
+    
+       
+    
+    </div>
+</div>
 
-        <div class="row">
-            <div class="col">
-                <h3>Translations</h3>
-                <span class="badge bg-primary mr-1">{{country.translations['deu'].official}}</span>
-                <span class="badge bg-primary mr-1">{{country.translations['spa'].official}}</span>
-                <span class="badge bg-primary mr-1">{{country.translations['ara'].official}}</span>
-                <span class="badge bg-primary mr-1">{{country.translations['bre'].official}}</span>
-                <span class="badge bg-primary mr-1">{{country.translations['ces'].official}}</span>
-                <span class="badge bg-primary mr-1">{{country.translations['fin'].official}}</span>
-                <span class="badge bg-primary mr-1">{{country.translations['jpn'].official}}</span>
-                <span class="badge bg-primary mr-1">{{country.translations['rus'].official}}</span>
 
-            </div>
-        </div>
 
-        <pre class="mt-5">
-            <h3>JSON info</h3>
-            {{country | json}}
-        </pre>
-    </span>
-
-   
-
-</ng-template>
-
-​​
