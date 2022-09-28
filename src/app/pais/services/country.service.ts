@@ -20,8 +20,8 @@ export class CountryService {
     and make a faster and lighter response
 
   */
-  public httpParams:HttpParams=new HttpParams()
-  .set('fields','name,population,flags,capital,cca2');
+ /* public httpParams:HttpParams=new HttpParams()
+  .set('fields','name,population,flags,capital,cca2');*/
   
 
   constructor(private _http:HttpClient) { }
@@ -31,20 +31,20 @@ export class CountryService {
 
     let url:string=`${this.byCountryUrl}/${country}`;
 
-    return this._http.get<Country[]>(url,{params:this.httpParams});
+    return this._http.get<Country[]>(url,{/*params:this.httpParams*/});
   }
 
   searchByCapital(capital:string):Observable<Country[]>{
 
     let url:string=`${this.byCapitalUrl}/${capital}`;
-    return this._http.get<Country[]>(url, {params:this.httpParams});
+    return this._http.get<Country[]>(url, {/*params:this.httpParams*/});
   }
 
   searchByRegion(region:string):Observable<Country[]>{
 
 
     let url:string=`${this.byRegionUrl}/${region}`;
-    return this._http.get<Country[]>(url, {params:this.httpParams});
+    return this._http.get<Country[]>(url, {/*params:this.httpParams*/});
   }
 
   //in older api by code it returns only an object, but here also an array

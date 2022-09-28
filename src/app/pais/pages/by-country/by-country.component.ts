@@ -14,6 +14,7 @@ export class ByCountryComponent implements OnInit {
   public term:string;
   public isNotFound:boolean;
   public byCountryResults:Country[];
+  public suggestedCountries: Country[];
 
   //will be sent to input child component
   public placeholderText:string="Search by country";
@@ -24,6 +25,7 @@ export class ByCountryComponent implements OnInit {
    this.term="";
     this.isNotFound=false;
     this.byCountryResults=[];
+    this.suggestedCountries=[];
 
 
   }
@@ -66,7 +68,12 @@ export class ByCountryComponent implements OnInit {
   }
 
   suggestions(term:string){
-    this.isNotFound=false;
+   // this.isNotFound=false;
+    this._countryService.searchByCountry(term)
+    .subscribe( countries =>{
+      //we well get only certain results with splice array method
+      this.suggestedCountries=countries.splice (0,3);
+    })
   }
 
 

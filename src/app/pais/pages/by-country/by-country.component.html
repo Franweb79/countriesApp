@@ -5,11 +5,16 @@
     <div class="col">
         <app-input-component 
         [placeholder]="placeholderText"
-        (onDebounce)="suggestions($event)" 
         (termEmitter)="search($event)"></app-input-component>
     </div>
    
 </div>
+
+<ul class="list-group">
+    <li class="list-group-item list-group-item-action" *ngFor="let country of suggestedCountries">
+        {{country.name.official}}
+    </li>
+</ul>
 
 <hr>
 

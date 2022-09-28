@@ -57,7 +57,7 @@ export class ByCapitalsComponent implements OnInit {
   }
 
   suggestions(term:string){
-    this.isNotFound=false;
+   // this.isNotFound=false;
   }
 
 }

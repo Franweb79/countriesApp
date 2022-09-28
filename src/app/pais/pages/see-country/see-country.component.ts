@@ -34,7 +34,7 @@ import {
       transition('show => hide', [
         animate('2s')
       ])*/
-    ]),
+    ])
    
   ]
 })
