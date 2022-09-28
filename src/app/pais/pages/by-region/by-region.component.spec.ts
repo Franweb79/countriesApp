@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ByRegionComponent } from './by-region.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ByRegionComponent', () => {
   let component: ByRegionComponent;
@@ -8,7 +9,8 @@ describe('ByRegionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ByRegionComponent ]
+      declarations: [ ByRegionComponent ],
+      imports:[HttpClientModule]
     })
     .compileComponents();
 

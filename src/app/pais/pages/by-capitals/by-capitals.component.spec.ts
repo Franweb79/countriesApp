@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ByCapitalsComponent } from './by-capitals.component';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('ByCapitalsComponent', () => {
   let component: ByCapitalsComponent;
@@ -8,7 +9,8 @@ describe('ByCapitalsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ByCapitalsComponent ]
+      declarations: [ ByCapitalsComponent ],
+      imports:[HttpClientModule]
     })
     .compileComponents();
 
