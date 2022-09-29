@@ -53,16 +53,8 @@ export class ByCapitalsComponent implements OnInit {
 
   }
 
-  getTermEmitter(term:string){
-    this.term=term;
-  }
+ 
 
-  /*
-    TODO maybe we implement when API is fixed, 
-    now it doesn´t work properly with partial searches
-  */
-  suggestions(term:string){
-   // this.isNotFound=false;
-  }
+  
 
 }

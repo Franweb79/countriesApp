@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ConnectableObservable, debounceTime, Observable, Subject } from 'rxjs';
 import { Country } from '../../interfaces/i-country';
 import { CountryService } from '../../services/country.service';
 
@@ -36,7 +35,6 @@ export class ByCountryComponent implements OnInit {
        
         this.term=term;
         this.byCountryResults=response;
-        console.log (this.byCountryResults);
         this.isNotFound=false;
 
       
@@ -44,9 +42,9 @@ export class ByCountryComponent implements OnInit {
       error:(error:any)=>{
 
         this.term=term;
-
-        console.log (error);
         this.isNotFound=true;
+
+        //we set array to empty and we control on the template
         this.byCountryResults=[];
 
         
@@ -63,10 +61,9 @@ export class ByCountryComponent implements OnInit {
     
   }
 
-  getTermEmitter(term:string){
-    this.term=term;
-  }
 
+
+  //TODO maybe this will be continued when they fix the API
   suggestions(term:string){
    // this.isNotFound=false;
     this._countryService.searchByCountry(term)
