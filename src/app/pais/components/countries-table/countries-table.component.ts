@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Country } from '../../interfaces/i-country';
 import { CountryService } from '../../services/country.service';
-import { AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef } from '@angular/core';
 
 import {
-  trigger, state, style, animate, transition, query, group
+  trigger, state, style, animate, transition
  } from '@angular/animations';
 
 @Component({
@@ -40,9 +40,7 @@ export class CountriesTableComponent implements OnInit {
 
   public showTable:boolean;
   
-  constructor(private _countryService:CountryService,
-              private changeRef: ChangeDetectorRef
-    ) { 
+  constructor(private changeRef: ChangeDetectorRef) { 
     this.dataFromParent=[];
     this.showTable=false;
 
@@ -50,22 +48,14 @@ export class CountriesTableComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-  /*  this.isStarted=true;
-    console.log ('init',this.isStarted);*/
   }
 
   //to make animation work, must be here, not on ngOnInit
   ngAfterViewInit(): void {
     this.showTable=true;
     this.changeRef.detectChanges();//to fix error https://github.com/angular/angular/issues/36173
-    console.log ('init',this.showTable);
   }
 
-  ngOnDestroy(){
-   // this.showTable=false;
-    console.log ('destroy',this.showTable);
-
-  }
+  
 
 }
