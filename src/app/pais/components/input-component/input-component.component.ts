@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { debounceTime, Subject } from 'rxjs';
-import { Country } from '../../interfaces/i-country';
 import { CountryService } from '../../services/country.service';
 
 @Component({
@@ -10,9 +9,15 @@ import { CountryService } from '../../services/country.service';
 })
 export class InputComponentComponent implements OnInit {
 
-  //this is to emit tjhe complete search term when we push enter (ngSubmit)
-  //to catch input value each time we input (write) a character,
-  //we will use debounceValueEmit with (input) event
+  /*
+  
+    this is to emit the complete search term
+    when we push enter (ngSubmit)
+    to catch input value each time we input (write) 
+    a character,
+    we will use debounceValueEmit with (input) event
+
+  */
   public term:string;
 
   public isNotFound:boolean=false;
@@ -25,7 +30,7 @@ export class InputComponentComponent implements OnInit {
 
   public $subject = new Subject<string>();
 
-  constructor(private _countryService:CountryService) {
+  constructor() {
     this.term="";
 
    }
@@ -45,14 +50,11 @@ export class InputComponentComponent implements OnInit {
     this.termEmitter.emit(this.term);
   }
 
-  //despite any, type can be keyboardEvent
   pressedKeyEvent(){
 
 
     this.$subject.next(this.term);
-    //const value=event.target.value;
-    //this.onDebounce.emit(event.target.value)
-   // console.log (event.target.value);
+    
   }
 
   
