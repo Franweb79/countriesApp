@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Country } from '../../interfaces/i-country';
 import { CountryService } from '../../services/country.service';
 
@@ -26,14 +26,13 @@ export class ByCapitalsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //TODO  
+   
   search(term:string){
     this._countryService.searchByCapital(term).subscribe({
       next:(response:Country[])=>{
        
         this.term=term;
         this.byCapitalResults=response;
-        console.log (this.byCapitalResults);
         this.isNotFound=false;
 
       
@@ -41,9 +40,11 @@ export class ByCapitalsComponent implements OnInit {
       error:(error:any)=>{
 
         this.term=term;
-
-        console.log (error);
         this.isNotFound=true;
+        /*
+          we set empty array if we had an error, 
+          and we check it on the template
+        */
         this.byCapitalResults=[];
 
         
@@ -56,6 +57,10 @@ export class ByCapitalsComponent implements OnInit {
     this.term=term;
   }
 
+  /*
+    TODO maybe we implement when API is fixed, 
+    now it doesn´t work properly with partial searches
+  */
   suggestions(term:string){
    // this.isNotFound=false;
   }
