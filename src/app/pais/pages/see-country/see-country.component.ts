@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap, tap } from 'rxjs';
 import { CountryService } from '../../services/country.service';
-import { Country, Idd } from '../../interfaces/i-country';
-import { AfterViewInit, ChangeDetectorRef } from '@angular/core';
+import { Country } from '../../interfaces/i-country';
+import { ChangeDetectorRef } from '@angular/core';
 
 
 import {
@@ -73,7 +73,6 @@ export class SeeCountryComponent implements OnInit {
     .subscribe({
       next: (resp=>{
         this.countries=resp;
-       // console.log(this.country[0]);
       }),
       error:(error=>{
 
@@ -82,21 +81,9 @@ export class SeeCountryComponent implements OnInit {
         this._router.navigate(['']);
       })
     
-      //TODO delete console logs everywhere and non used imports
 
     });
 
-
-    /*
-    this._activatedRoute.params.subscribe(({id})=>{
-      console.log (id);
-      this._countryService.getCountryByCode(id).subscribe(value=>{
-        console.log (value);
-      });
-
-    })
-
-    */
   }
 
   //to make animation work, must be here, not on ngOnInit
@@ -108,7 +95,6 @@ export class SeeCountryComponent implements OnInit {
 
   ngOnDestroy(){
      this.showComponentAnimation=false;
-     console.log ('destroy',this.showComponentAnimation);
  
    }
  
