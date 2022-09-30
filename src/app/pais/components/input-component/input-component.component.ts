@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { debounceTime, Subject } from 'rxjs';
-import { CountryService } from '../../services/country.service';
 
 @Component({
   selector: 'app-input-component',

@@ -16,7 +16,7 @@ export class ByCountryComponent implements OnInit {
   public suggestedCountries: Country[];
 
   //will be sent to input child component
-  public placeholderText:string="Search by country";
+  public placeholderText:string="Search by country. Also variants including same term will be searched";
 
 
   constructor( private _countryService:CountryService) { 

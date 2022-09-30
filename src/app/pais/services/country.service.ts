@@ -22,7 +22,7 @@ export class CountryService {
   */
 
   public httpParams:HttpParams=new HttpParams()
-  .set('fields','name,population,flags,capital,cca2');
+  .set('fields','name,population,altSpellings,flags,capital,cca2');
   
 
   constructor(private _http:HttpClient) { }
