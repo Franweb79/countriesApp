@@ -68,8 +68,13 @@ export class ByCountryComponent implements OnInit {
    // this.isNotFound=false;
     this._countryService.searchByCountry(term)
     .subscribe( countries =>{
+
+      
+
       //we well get only certain results with splice array method
+      //TODO aqui igual podemos hacer el filter por el term
       this.suggestedCountries=countries.splice (0,3);
+      console.log (this.suggestedCountries);
     })
   }
 

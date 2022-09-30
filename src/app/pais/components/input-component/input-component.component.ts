@@ -24,7 +24,7 @@ export class InputComponentComponent implements OnInit {
   @Input() placeholder:string="";
 
   @Output() termEmitter= new EventEmitter<string>;
- // @Output() onDebounce=new EventEmitter<string>;
+ @Output() onDebounce=new EventEmitter<string>;
 
 
   public $subject = new Subject<string>();
@@ -40,7 +40,7 @@ export class InputComponentComponent implements OnInit {
     .pipe(debounceTime(300))
     .subscribe(value=>{
       console.log ('subject', value);
-     // this.onDebounce.emit(value);
+     this.onDebounce.emit(value);
       this.isNotFound=false;
     })
   }
