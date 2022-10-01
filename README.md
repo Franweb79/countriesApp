@@ -6,4 +6,3 @@ https://stackoverflow.com/questions/60434192/angular-ng-template-animation-on-op
 
 Also seems to be problematic with ngIf and ngFor, so best way is to sorrund everything with a div with no conditions, directives or such, and apply animation there
 
-//TODO make a link on sidebar to portfolio
