@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Country } from '../../interfaces/i-country';
-import { CountryService } from '../../services/country.service';
 import { ChangeDetectorRef } from '@angular/core';
 
 import {

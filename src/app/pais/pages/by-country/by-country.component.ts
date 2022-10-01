@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { filter } from 'rxjs/internal/operators/filter';
 import { Country } from '../../interfaces/i-country';
 import { CountryService } from '../../services/country.service';
 
@@ -64,7 +63,6 @@ export class ByCountryComponent implements OnInit {
 
 
 
-  //TODO maybe this will be continued when they fix the API
   suggestions(term:string){
 
     //term to lowercase because API is case sensitive
