@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { filter } from 'rxjs/internal/operators/filter';
 import { Country } from '../../interfaces/i-country';
 import { CountryService } from '../../services/country.service';
 
@@ -65,24 +66,56 @@ export class ByCountryComponent implements OnInit {
 
   //TODO maybe this will be continued when they fix the API
   suggestions(term:string){
-   // this.isNotFound=false;
+
+    //term to lowercase because API is case sensitive
+    term=term.toLowerCase();
+   this.isNotFound=false;
     this._countryService.searchByCountry(term)
     .subscribe( countries =>{
 
-      
+     
 
-      //we well get only certain results with splice array method
-      //TODO aqui igual podemos hacer el filter por el term
-      this.suggestedCountries=countries.splice (0,3);
+      this.suggestedCountries=countries;
+
+      /*
+        no need to search on name it is done my the API, now
+        we have the results with term on the name.official or in 
+        the altSpellings, we will filter and modify the altSpellings array
+        only with values containing the term (that is why we assign again altSpellings to altSpellings when we filter it,
+        if we don´t make the original array wont be modified).
+
+        suggestedCountries is not necessary to reassign since we will have
+        the suggested countries with the modified altSpellings 
+
+      */
+
+      this.suggestedCountries.filter(country=>{
+
+        /*
+          in case search term is for example "ho", as the API
+          is case sensitive, we must reassign another variable
+          with "Ho" to make results like "Honduras" work,
+          then on the filter we will search if altSpelling includes "ho" or "Ho"
+        */
+        let termwithCapitalLetter:string="";
+        termwithCapitalLetter=term.charAt(0).toUpperCase()+term.slice(1);
+
+       return country.altSpellings=country.altSpellings.filter(altSpellingValue=>{
+          
+        return altSpellingValue.includes(term) || altSpellingValue.includes(termwithCapitalLetter);
+        })
+
+
+      });
+
       console.log (this.suggestedCountries);
-    })
+      
+    });
 
     
   }
 
-  redirectToCountry(countryCode:string){
-      
-  }
+  
 
 
  

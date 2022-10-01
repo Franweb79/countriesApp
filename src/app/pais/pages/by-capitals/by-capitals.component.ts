@@ -53,7 +53,9 @@ export class ByCapitalsComponent implements OnInit {
 
   }
 
- 
+  deleteErrorMessage(){
+    this.isNotFound=false;
+  }
 
   
 

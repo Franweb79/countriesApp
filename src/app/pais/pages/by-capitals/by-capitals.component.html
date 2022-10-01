@@ -4,7 +4,8 @@
     <div class="col">
         <app-input-component 
         [placeholder]="placeholderText"
-        (termEmitter)="search($event)"></app-input-component>
+        (termEmitter)="search($event)"
+        (onDebounce)="deleteErrorMessage()"></app-input-component>
     </div>
    
 </div>
@@ -20,3 +21,4 @@
         <app-countries-table [dataFromParent]="byCapitalResults" ></app-countries-table>
     </div>
 </div>
+

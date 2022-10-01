@@ -13,7 +13,7 @@
 
 <ul class="list-group">
     <li class="list-group-item list-group-item-action" *ngFor="let country of suggestedCountries" [routerLink]="['/country', country.cca2]">
-        {{country.name.official}}
+        {{country.name.official}}, <strong>Variants: </strong>{{country.altSpellings}}
     </li>
 </ul>
 
