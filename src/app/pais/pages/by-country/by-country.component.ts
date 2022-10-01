@@ -66,7 +66,7 @@ export class ByCountryComponent implements OnInit {
   suggestions(term:string){
 
     //term to lowercase because API is case sensitive
-    term=term.toLowerCase();
+   term=term.toLowerCase();
    this.isNotFound=false;
     this._countryService.searchByCountry(term)
     .subscribe({
@@ -98,7 +98,7 @@ export class ByCountryComponent implements OnInit {
           let termwithCapitalLetter:string="";
           termwithCapitalLetter=term.charAt(0).toUpperCase()+term.slice(1);
   
-         return country.altSpellings=country.altSpellings.filter(altSpellingValue=>{
+          return country.altSpellings=country.altSpellings.filter(altSpellingValue=>{
             
           return altSpellingValue.includes(term) || altSpellingValue.includes(termwithCapitalLetter);
           })
@@ -106,7 +106,6 @@ export class ByCountryComponent implements OnInit {
   
         });
   
-        console.log (this.suggestedCountries);
       
       },
       error:(error:any)=>{

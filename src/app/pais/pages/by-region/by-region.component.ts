@@ -41,7 +41,6 @@ export class ByRegionComponent implements OnInit {
       next:(response:Country[])=>{
        
         this.byRegionResults=response;
-        console.log (this.byRegionResults);
 
       
       },

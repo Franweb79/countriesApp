@@ -90,7 +90,6 @@ export class SeeCountryComponent implements OnInit {
   ngAfterViewInit(): void {
     this.showComponentAnimation=true;
     this.changeRef.detectChanges();//to fix error https://github.com/angular/angular/issues/36173
-    console.log ('init',this.showComponentAnimation);
   }
 
   ngOnDestroy(){

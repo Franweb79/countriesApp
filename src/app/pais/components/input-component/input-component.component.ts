@@ -39,7 +39,6 @@ export class InputComponentComponent implements OnInit {
     this.$subject
     .pipe(debounceTime(300))
     .subscribe(value=>{
-      console.log ('subject', value);
      this.onDebounce.emit(value);
       this.isNotFound=false;
     })
