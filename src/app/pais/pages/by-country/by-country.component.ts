@@ -71,11 +71,11 @@ export class ByCountryComponent implements OnInit {
     term=term.toLowerCase();
    this.isNotFound=false;
     this._countryService.searchByCountry(term)
-    .subscribe( countries =>{
+    .subscribe({
 
-     
-
-      this.suggestedCountries=countries;
+      next:(countries)=>{
+       
+        this.suggestedCountries=countries;
 
       /*
         no need to search on name it is done my the API, now
@@ -89,31 +89,44 @@ export class ByCountryComponent implements OnInit {
 
       */
 
-      this.suggestedCountries.filter(country=>{
+        this.suggestedCountries.filter(country=>{
+
+          /*
+            in case search term is for example "ho", as the API
+            is case sensitive, we must reassign another variable
+            with "Ho" to make results like "Honduras" work,
+            then on the filter we will search if altSpelling includes "ho" or "Ho"
+          */
+          let termwithCapitalLetter:string="";
+          termwithCapitalLetter=term.charAt(0).toUpperCase()+term.slice(1);
+  
+         return country.altSpellings=country.altSpellings.filter(altSpellingValue=>{
+            
+          return altSpellingValue.includes(term) || altSpellingValue.includes(termwithCapitalLetter);
+          })
+  
+  
+        });
+  
+        console.log (this.suggestedCountries);
+      
+      },
+      error:(error:any)=>{
 
         /*
-          in case search term is for example "ho", as the API
-          is case sensitive, we must reassign another variable
-          with "Ho" to make results like "Honduras" work,
-          then on the filter we will search if altSpelling includes "ho" or "Ho"
+          to make suggestions list dissapear if we type something and no matches
+
         */
-        let termwithCapitalLetter:string="";
-        termwithCapitalLetter=term.charAt(0).toUpperCase()+term.slice(1);
+       this.suggestedCountries=[];
 
-       return country.altSpellings=country.altSpellings.filter(altSpellingValue=>{
-          
-        return altSpellingValue.includes(term) || altSpellingValue.includes(termwithCapitalLetter);
-        })
+        
+      }
 
+    }); //suscribe 
 
-      });
-
-      console.log (this.suggestedCountries);
-      
-    });
 
     
-  }
+  }//suggestions
 
   
 
