@@ -76,8 +76,13 @@ export class ByCountryComponent implements OnInit {
       this.suggestedCountries=countries.splice (0,3);
       console.log (this.suggestedCountries);
     })
+
+    
   }
 
+  redirectToCountry(countryCode:string){
+      
+  }
 
 
  
